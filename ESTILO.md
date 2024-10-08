@@ -1,22 +1,48 @@
 
 # Las cuestiones de estilo
-Este documento reúne un conjunto de reglas de estilo diseñadas para hacer que el código en C sea más claro, fácil de leer y menos propenso a errores. Programar en C puede ser bastante flexible, pero también es fácil caer en malas prácticas que pueden llevar a errores difíciles de detectar. Por eso, tener un conjunto de reglas claras ayuda a mantener el código ordenado y seguro.
+Este documento reúne un conjunto de reglas de estilo diseñadas para
+hacer que el código en C sea más claro, fácil de leer y menos propenso
+a errores. Programar en C puede ser bastante flexible, pero también es
+fácil caer en malas prácticas que pueden llevar a errores difíciles de
+detectar. Por eso, tener un conjunto de reglas claras ayuda a mantener
+el código ordenado y seguro.
 
-La idea detrás de estas reglas es que un buen código no solo funcione, sino que también sea comprensible para cualquier persona que tenga que leerlo, ya sea el mismo programador en el futuro o alguien más que se sume al proyecto. Un código limpio y bien organizado facilita mucho el trabajo en equipo, ahorra tiempo en correcciones y evita dolores de cabeza cuando llega el momento de depurarlo o actualizarlo.
+La idea detrás de estas reglas es que un buen código no solo funcione,
+sino que también sea comprensible para cualquier persona que tenga que
+leerlo, ya sea el mismo programador en el futuro o alguien más que se
+sume al proyecto. Un código limpio y bien organizado facilita mucho el
+trabajo en equipo, ahorra tiempo en correcciones y evita dolores de
+cabeza cuando llega el momento de depurarlo o actualizarlo.
 
-Estas reglas cubren todo, desde cómo nombrar variables y funciones hasta cómo estructurar los condicionales y lazos. Seguirlas no solo ayuda a mantener la coherencia en el proyecto, sino que también hace que el código sea más robusto y fácil de mantener a largo plazo.
+Estas reglas cubren todo, desde cómo nombrar variables y funciones hasta
+cómo estructurar los condicionales y lazos. Seguirlas no solo ayuda a
+mantener la coherencia en el proyecto, sino que también hace que el
+código sea más robusto y fácil de mantener a largo plazo.
 
-Comenzar con reglas rígidas en un lenguaje flexible, nos da un respaldo adicional y cuando nuestro entendimiento del lenguaje mejore, podemos comenzar a doblar las reglas y llegar a un estilo propio.
+Comenzar con reglas rígidas en un lenguaje flexible, nos da un respaldo
+adicional y cuando nuestro entendimiento del lenguaje mejore, podemos
+comenzar a doblar las reglas y llegar a un estilo propio.
 
 ## Se aceptan sugerencias y conversiones del tema
 
-Estamos abiertos a conversar todas las reglas, solo tienen que abrir un hilo en Discussions (o un Ticket en el Issue Tracker) asi como nuevas reglas, clasificaciones, explicacioes y potenciales excepciones.
+Estamos abiertos a conversar todas las reglas, solo tienen que abrir
+un hilo en Discussions (o un Ticket en el Issue Tracker) asi como
+nuevas reglas, clasificaciones, explicacioes y potenciales excepciones.
+
+## Cambio a número hexadecimal
+En clases sugirieron cambiar el número de las reglas a un literal
+hexadecimal, me parece una idea excelente, y en la versión 2025 de
+este documento quedará así.
 
 # Las reglas
 (En algún momento dejaremos)
 
 ### Regla 0: La claridad y  prolijidad son muy importantes.
-El código debe ser claro y fácil de entender para cualquiera que lo lea, no solo para quien lo escribe. Un código limpio y prolijo evita errores, facilita el mantenimiento y mejora la colaboración en equipo. La claridad es preferible a trucos de programación o técnicas avanzadas que solo complican el entendimiento.
+El código debe ser claro y fácil de entender para cualquiera que lo lea,
+no solo para quien lo escribe. Un código limpio y prolijo evita errores,
+facilita el mantenimiento y mejora la colaboración en equipo. La claridad
+es preferible a trucos de programación o técnicas avanzadas que solo
+complican el entendimiento.
 
 ```diff
 - for (int i = 0, j = 10; i < j; i++, j--) { printf("%d", i+j); }
@@ -29,7 +55,10 @@ El código debe ser claro y fácil de entender para cualquiera que lo lea, no so
 
 ### Regla 1: Los identificadores deben ser descriptivos.
 
-Los nombres de variables, funciones y demás identificadores deben reflejar claramente su propósito. Esto ayuda a que el código sea autodescriptivo, sin necesidad de comentarios adicionales. Usar nombres significativos facilita la lectura y comprensión.
+Los nombres de variables, funciones y demás identificadores deben reflejar
+claramente su propósito. Esto ayuda a que el código sea autodescriptivo,
+sin necesidad de comentarios adicionales. Usar nombres significativos
+facilita la lectura y comprensión.
 
 ```diff
 // Malos identificadores
@@ -43,6 +72,16 @@ Los nombres de variables, funciones y demás identificadores deben reflejar clar
 + descuento = calcular_descuento(precio);
 ```
 
+#### Pero, no tengas miedo de los nombres cortos de variables
+
+1. Si el ámbito de la variable es reducido, (entra en la pantalla)
+2. La variable se usa en muchos lugares
+3. Tiene un identificador de una o dos letras obvias para representarla.
+
+Probá y fijate si ayuda a la legibilidad. _Probablemente sí_.
+
+El ejemplo primordial de esto es ni mas ni menos que `i` y `j`, como contadores.
+Igual, si aplican las condiciones anteriores quizas tengamos alguna otra.
 
 ### Regla 2: Una declaración de variable por línea.
 
@@ -54,7 +93,8 @@ Los nombres de variables, funciones y demás identificadores deben reflejar clar
 ```
 
 ### Regla 3: Siempre inicializar la variable a un valor conocido.
-Es importante que una variable utilizada como R-Value tenga un valor conocido antes de tomar lo que tenga.
+Es importante que una variable utilizada como R-Value tenga un valor
+conocido antes de tomar lo que tenga.
 
 ### Regla 4: Un espacio antes y después de cada operador.
 
@@ -76,20 +116,33 @@ else
 ```
 ### Regla 6: Los lazos sin `break` y `continue` en su lugar, lazos con bandera.
 
-El uso de break y continue dentro de los lazos puede generar un flujo de control inesperado, lo que dificulta el seguimiento del programa. Es preferible utilizar una bandera (variable de control) para salir de los lazos de forma explícita y ordenada, lo que hace el código más predecible y fácil de mantener.
+El uso de break y continue dentro de los lazos puede generar un flujo de
+control inesperado, lo que dificulta el seguimiento del programa. Es preferible
+utilizar una bandera (variable de control) para salir de los lazos de forma
+explícita y ordenada, lo que hace el código más predecible y fácil de mantener.
 
 ### Regla 7: Prefieran usar while en lugar de `for`.
 
-El lazo while es más flexible y adecuado cuando no se conoce de antemano el número de iteraciones. Además, el while es generalmente más fácil de leer cuando la condición de parada no está claramente relacionada con un contador. Si se utiliza un lazo para repetir indefinidamente o hasta que una condición específica sea verdadera, while es preferible a for.
+El lazo while es más flexible y adecuado cuando no se conoce de antemano
+el número de iteraciones. Además, el while es generalmente más fácil de
+leer cuando la condición de parada no está claramente relacionada con un
+contador. Si se utiliza un lazo para repetir indefinidamente o hasta que
+una condición específica sea verdadera, while es preferible a for.
 
 ### Regla 8: Una sola instrucción `return` por función.
 
-Limitar una función a un único punto de retorno mejora la legibilidad y facilita el seguimiento del flujo de control. Además, ayuda a evitar errores relacionados con la liberación de recursos o la ejecución de código después de múltiples retornos.
+Limitar una función a un único punto de retorno mejora la legibilidad
+y facilita el seguimiento del flujo de control. Además, ayuda a evitar
+errores relacionados con la liberación de recursos o la ejecución de
+código después de múltiples retornos.
+
 ### Regla 9: Las funciones no van con `printf` o `scanf`, a no ser que ese sea su propósito.
 
-Las funciones deben estar separadas de la entrada y salida (I/O) para que sean útiles en otros contextos y se probar.
+Las funciones deben estar separadas de la entrada y salida (I/O) para
+que sean útiles en otros contextos y se probar.
 
-Si el propósito de la función no es realizar I/O, estos llamados deben evitarse, delegando la entrada y salida a otras funciones.
+Si el propósito de la función no es realizar I/O, estos llamados deben
+evitarse, delegando la entrada y salida a otras funciones.
 
 ### Regla 10: Todas las funciones con documentación completa y en la forma.
 ```C
@@ -103,14 +156,20 @@ Si el propósito de la función no es realizar I/O, estos llamados deben evitars
  ```
 
 ### Regla 11: Sin usar variables globales, no están permitidas.
-Las variables globales pueden ser modificadas desde cualquier parte del programa, lo que puede causar efectos secundarios inesperados y dificultar el rastreo de errores.
+Las variables globales pueden ser modificadas desde cualquier parte del
+programa, lo que puede causar efectos secundarios inesperados y
+dificultar el rastreo de errores.
 
 ### Regla 12: Siempre que sea posible*, una responsabilidad por función.
-Cada función debe encargarse de una sola tarea o responsabilidad. Esto mejora la legibilidad y facilita la reutilización y el mantenimiento del código. Las funciones pequeñas y especializadas son más fáciles de probar y depurar.
+Cada función debe encargarse de una sola tarea o responsabilidad. Esto
+mejora la legibilidad y facilita la reutilización y el mantenimiento del
+código. Las funciones pequeñas y especializadas son más fáciles de probar
+y depurar.
 
 ### Regla 13: Las condiciones complejas deben ser simplificadas y comentadas.
 
-Si una condición contiene múltiples operadores lógicos, divídela en partes más pequeñas o agrega comentarios explicativos.
+Si una condición contiene múltiples operadores lógicos, divídela en partes
+más pequeñas o agrega comentarios explicativos.
 
 ```C
 if (condicion1 && (condicion2 || !condicion3)) {
@@ -119,7 +178,9 @@ if (condicion1 && (condicion2 || !condicion3)) {
 ```
 
 ### Regla 14: Los arreglos estáticos solo pueden ser creados de un tamaño fijo al compilar.
-Los arreglos ALV no estan permitidos por los problemas que pueden ocasionar, por lo que deben ser definidos con un tamaño fijo que se determina en tiempo de compilación.
+Los arreglos ALV no estan permitidos por los problemas que pueden ocasionar,
+por lo que deben ser definidos con un tamaño fijo que se determina en tiempo
+de compilación.
 
 ```diff
 - int n = 10;
@@ -128,20 +189,36 @@ Los arreglos ALV no estan permitidos por los problemas que pueden ocasionar, por
 ```
 
 ### Regla 15: Un caso por función de prueba.
-Pueden lograr esto creando una función que reciba los argumentos y el resultado esperado para comparar, o hacer una funcion para cada caso.
+Pueden lograr esto creando una función que reciba los argumentos y el
+resultado esperado para comparar, o hacer una funcion para cada caso.
 
 ### Regla 16: Evitar las condiciones ambiguas que pueden depender del tipo de dato.
 
-Por ejemplo, si una variable numérica se usa como condición, siempre se debe ser explícito:
+Por ejemplo, si una variable numérica se usa como condición, siempre se
+debe ser explícito:
 
 ```diff
 - if (x) {
 + if (x != 0) {
 ```
 
+### Regla 17: Mantengan el alcance de las variables al mínimo.
+Historicamente, C requeria que todas las variables sean declaradas al inicio
+de la función, para saber cuanto tiene que cambiar el stack en una llamada a
+dicha funcion. Hoy día, no es necesario limitarnos y podemos crear variables
+de alcance especifico.
+
+```
+for (int i = 0; i < MAXIMO; i++)
+```
+Declarar `i` en este lugar, hace que la variable solo sea conocida por el lazo.
+
+No siempre es posible, pero en la mayoria de los casos, _sí_.
+
 ### Regla 95: Los retornos numéricos específicos deben ser una constante de preprocesador.
 
-El usar nombres descriptivos para los valores facilita la comprensión del propósito del retorno al darle un nombre explicito.
+El usar nombres descriptivos para los valores facilita la comprensión
+del propósito del retorno al darle un nombre explicito.
 
 ```diff
 -return -1;
@@ -161,6 +238,9 @@ Incluso para bloques de una sola línea.
 ```
 
 ### Regla 96: Cada bloque lleva cuatro espacios más que el que lo contiene.
+Esto permite elegir un ancho de sangría a medida de la situación, en las
+instrucciones que no son bloques y sin romper la alineación general.
+
 ```C
 //nivel 0
 {
@@ -173,23 +253,36 @@ Incluso para bloques de una sola línea.
     }
 }
 ```
+
 ### Regla 97: Sin instrucción `goto`.
-El uso de `goto` rompe el flujo natural del programa y dificulta la lectura y depuración del código, ya que salta entre diferentes partes del programa de manera impredecible. En lugar de usar esta instrucción, emplea estructuras de control como `if-else`, `for`, `while` y `switch`, que permiten un flujo claro y estructurado.
+El uso de `goto` rompe el flujo natural del programa y dificulta la lectura
+y depuración del código, ya que salta entre diferentes partes del programa
+de manera impredecible. En lugar de usar esta instrucción, emplea estructuras
+de control como `if-else`, `for`, `while` y `switch`, que permiten un flujo
+claro y estructurado.
 
 ### Regla 98: Sin operador condicional (ternario) `?:;`.
 
-El operador condicional (ternario) es compacto, pero puede hacer que el código sea difícil de leer, especialmente si se usa de manera excesiva o anidada.
+El operador condicional (ternario) es compacto, pero puede hacer que el código
+sea difícil de leer, especialmente si se usa de manera excesiva o anidada.
 
 ### Regla 0x64h: Los ejercicios deben ser resueltos con una función.
-Esto fomenta la modularización del código, facilita la prueba de unidades, y promueve la reutilización del código. Dividir la lógica en funciones permite que el código sea más organizado y comprensible.
+Esto fomenta la modularización del código, facilita la prueba de unidades, y
+promueve la reutilización del código. Dividir la lógica en funciones permite
+que el código sea más organizado y comprensible.
 
 ### Regla 0x65h: Los nombres de las funciones y procedimientos van en minúsculas y `snake_case`.
 
-El uso de snake_case (nombres en minúsculas con guiones bajos entre palabras) para los nombres de funciones y procedimientos es una convención de estilo que mejora la consistencia y legibilidad del código. De esta forma y siguiendo las otras reglas de este estilo, podemos saber inmediatamente que es una funcion, una variable, una constante y las demás piezas del programa.
+El uso de snake_case (nombres en minúsculas con guiones bajos entre palabras)
+para los nombres de funciones y procedimientos es una convención de estilo que
+mejora la consistencia y legibilidad del código. De esta forma y siguiendo las
+otras reglas de este estilo, podemos saber inmediatamente que es una funcion,
+una variable, una constante y las demás piezas del programa.
 
 
 ### Regla 0x66h: Los punteros deben ser declarados con el asterisco pegado al identificador.
-Para facilitar la identificación visual de la variable como un puntero y mejora la claridad.
+Para facilitar la identificación visual de la variable como un puntero y
+mejora la claridad.
 
 ```diff
 -int* ptr;
@@ -199,7 +292,8 @@ Para facilitar la identificación visual de la variable como un puntero y mejora
 
 ### Regla 0x67h: Siempre verificar la asignación exitosa de memoria dinámica.
 
-Cualquier asignación dinámica de memoria con `malloc`, `calloc` o `realloc` debe ser seguida por una comprobación de éxito:
+Cualquier asignación dinámica de memoria con `malloc`, `calloc` o `realloc`
+debe ser seguida por una comprobación de éxito:
 
 ```C
 ptr = malloc(tamaño);
@@ -211,7 +305,8 @@ if (!ptr)
 
 ### Regla 0x68h: Liberar siempre la memoria dinámica.
 
-Cada vez que se usa `malloc`/`calloc `/`realloc`, debe asegurarse que la memoria sea liberada correctamente usando free.
+Cada vez que se usa `malloc`/`calloc `/`realloc`, debe asegurarse que
+la memoria sea liberada correctamente usando free.
 
 ```C
 free(ptr);
@@ -220,7 +315,8 @@ ptr = NULL;  // Evitar punteros colgantes
 
 ### Regla 0x69h: No mezclar operaciones de asignación y comparación en una sola línea.
 
-Mantener las asignaciones y comparaciones en líneas separadas reduce la posibilidad de errores sutiles.
+Mantener las asignaciones y comparaciones en líneas separadas reduce la
+posibilidad de errores sutiles.
 
 ```diff
 - if ((ptr = malloc(tamaño)) == NULL) {
@@ -269,7 +365,8 @@ typedef struct {
 
 ### Regla 0x6Eh: Acceso a estructuras a través de punteros, usando la notación de flecha (->).
 
-Cuando se accede a los campos de una estructura mediante un puntero, siempre usar `->` en lugar de `.`:
+Cuando se accede a los campos de una estructura mediante un puntero,
+siempre usar `->` en lugar de `.`:
 
 ```C
 ptr->campo = valor;
@@ -277,7 +374,8 @@ ptr->campo = valor;
 
 ### Regla 0x6Fh: Evitar el uso de punteros genéricos (void *) siempre que sea posible.
 
-El uso de punteros genéricos debe ser evitado a menos que sea estrictamente necesario, ya que puede ocultar errores de tipo.
+El uso de punteros genéricos debe ser evitado a menos que sea
+estrictamente necesario, ya que puede ocultar errores de tipo.
 
 ### Regla 0x70h: Evitar usar múltiples niveles de punteros a menos que sea absolutamente necesario.
 
@@ -285,7 +383,8 @@ Esto complica la lectura y el manejo, especialmente cuando se trata de asignaci�
 
 ### Regla 0x71h: Documentar la propiedad de los recursos al usar punteros.
 
-Cuando una función recibe o devuelve un puntero a memoria dinámica, es importante documentar quién es responsable de liberar la memoria:
+Cuando una función recibe o devuelve un puntero a memoria dinámica, es
+importante documentar quién es responsable de liberar la memoria:
 
 ```C
 /**
@@ -334,7 +433,8 @@ ptr = malloc(sizeof(*ptr));  // Asigna la cantidad correcta de memoria para el t
 
 ### Regla 0x76h: Verificar siempre los límites de los arreglos antes de acceder a sus elementos.
 
-Evita accesos fuera de los límites del arreglo, esto es una de las fuentes más comunes de errores en C:
+Evita accesos fuera de los límites del arreglo, esto es una de las fuentes más
+comunes de errores en C:
 
 ```C
 if (indice >= 0 && indice < tamaño_arreglo) {
@@ -344,7 +444,8 @@ if (indice >= 0 && indice < tamaño_arreglo) {
 
 ### Regla 0x77h: Evitar el uso de punteros a funciones si no es estrictamente necesario.
 
-Los punteros a funciones pueden introducir complejidad innecesaria. Prefiere mantener las funciones independientes si es posible.
+Los punteros a funciones pueden introducir complejidad innecesaria. Prefiere mantener
+las funciones independientes si es posible.
 
 ### Regla 0x78h: Usar enum en lugar de números mágicos para estados y valores constantes.
 
@@ -357,7 +458,8 @@ Estado estado = ACTIVO;
 
 ### Regla 0x79h: Documentar explícitamente el comportamiento de las funciones al manejar punteros nulos.
 
-Cuando una función acepta o devuelve un puntero nulo, el comportamiento debe estar claramente documentado:
+Cuando una función acepta o devuelve un puntero nulo, el comportamiento debe
+estar claramente documentado:
 
 ```C
 /**
@@ -366,14 +468,82 @@ Cuando una función acepta o devuelve un puntero nulo, el comportamiento debe es
  * @returns ERROR_POR_NULO no se pudió seguir.
  */
 ```
-Esto no implica un cambio en la estructura de la función, es una cuestión de documentar la situación en la estructura que tenga la función.
+Esto no implica un cambio en la estructura de la función, es una cuestión de
+documentar la situación en la estructura que tenga la función.
 
 ### Regla 0x7Ah: Liberar memoria en el orden inverso a su asignación.
 
-Esto es especialmente importante en programas complejos donde varias porciones de memoria son asignadas en secuencia, como con matrices.
+Esto es especialmente importante en programas complejos donde varias porciones
+de memoria son asignadas en secuencia, como con matrices.
 
 ```C
 free(ptr2);
 free(ptr1);
 ```
+
+### Regla 0x7Bh: Nunca con más de 79 caracteres por línea
+
+Nunca escribas líneas de más de 79 caracteres.
+
+80 caracteres por línea es un estándar de facto para la visualización de código.
+Los lectores de tu código que confían en ese estándar, y tienen su terminal o
+editor dimensionado a 80 caracteres de ancho, pueden caber más en la pantalla
+colocando ventanas una al lado de la otra.
+
+Debes ceñirte a un máximo de 79 caracteres para que siempre haya un espacio en
+la última columna. Esto hace más evidente que la línea no continúa en la
+siguiente. También proporciona un margen derecho.
+
+Si superas los 80 caracteres, estás haciendo que tu código sea significativamente
+más difícil de leer para las personas que intentan confiar en el estándar de 80
+columnas. O bien la línea se enrolla, lo que dificulta la lectura, o bien los
+lectores tienen que desplazar la ventana hacia la derecha para leer los últimos
+caracteres. Cualquiera de estos dos resultados hace que el código sea más difícil
+de leer que si hubieras resuelto un salto de línea tú mismo.
+
+Es más difícil leer líneas largas porque tus ojos tienen que desplazarse más lejos
+para llegar al principio de la siguiente línea, y cuanto más lejos tengan que ir,
+más probable es que tengas que reajustarte visualmente. Los estilos de ancho 100
+y 120 son más fáciles de escribir, pero más difíciles de leer.
+
+Puede ser muy tentador dejar que una línea aquí o allá supere los 79 caracteres,
+pero sus lectores pagarán el precio cada vez que tengan que leer una línea así.
+Trate los 79 caracteres como un límite estricto, sin peros. Averigüe cuál es la
+mejor manera de dividir las líneas largas y sus lectores se lo agradecerán.
+
+En C, muchas instrucciones admiten estar en dos lineas, y otras necesitan del
+caracter de continuación `\` para seguir en la linea siguiente.
+
+Haga lo que hacen los demás, escriba para las 80 columnas y todos saldremos ganando.
+
+* [Emacs Wiki: Regla de las ochenta columnas](http://www.emacswiki.org/emacs/EightyColumnRule)
+* [Programmers' Stack Exchange: ¿Sigue siendo relevante el límite de 80 caracteres?](http://programmers.stackexchange.com/questions/604/is-the-80-character-limit-still-relevant-in-times-of-widescreen-monitors)
+
+
+### Regla 0x7Ch: Compará explicitamente valores, no te fíes de su "veracidad"
+
+Las comparaciones explícitas indican al lector con qué está trabajando,
+porque no siempre es obvio en C, y *siempre* es importante. ¿Estamos
+trabajando con cuentas, caracteres, booleanos o punteros? Lo primero que
+hago cuando veo que se comprueba la veracidad de una variable en C es
+buscar su tipo en la declaración. Ojalá el programador me lo hubiera
+dicho en la comparación.
+
+```
+// Malo - ¿qué comprueban realmente estas expresiones?
+if ( encendido );
+return !caracter;
+something( primero( xs ) );
+while ( !trabajando );
+
+// Bueno - informativo y elimina la ambigüedad
+if ( encendido > 0 );
+return caracter == NULL;
+something( primero( xs ) != '\0' );
+while ( trabajando == false );
+```
+
+
+
+
 
