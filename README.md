@@ -43,3 +43,6 @@ Las pocas desventajas que le vemos (al menos por ahora):
 Si tenés algún problema en el uso de este espacio y foro, o alguna sugerencia para usarlo mejor, 
 podés [crear un ticket en el issue tracker de la cursada](https://github.com/INGCOM-UNRN-P1/cursada-2024/issues), 
 o bien contactarnos por los medios habituales.
+
+
+![logo](P1.png)
